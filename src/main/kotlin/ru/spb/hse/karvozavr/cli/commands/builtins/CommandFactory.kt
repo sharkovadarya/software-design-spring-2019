@@ -17,6 +17,8 @@ object CommandFactory {
         "cat" -> CatCommand(args, inStream, outStream, errStream, shell)
         "echo" -> EchoCommand(args, inStream, outStream, errStream, shell)
         "wc" -> WordcountCommand(args, inStream, outStream, errStream, shell)
+        "pwd" -> PwdCommand(args, inStream, outStream, errStream, shell)
+        "exit" -> ExitCommand(args, inStream, outStream, errStream, shell)
         else -> TODO()
     }
 }

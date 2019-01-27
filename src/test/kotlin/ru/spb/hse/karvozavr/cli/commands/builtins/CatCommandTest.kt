@@ -1,11 +1,11 @@
-package ru.spb.hse.karvozavr.cli.builtins
+package ru.spb.hse.karvozavr.cli.commands.builtins
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import ru.spb.hse.karvozavr.cli.commands.builtins.CatCommand
 import ru.spb.hse.karvozavr.cli.shell.CliShell
 import ru.spb.hse.karvozavr.cli.streams.EmptyStream
 import ru.spb.hse.karvozavr.cli.streams.ReadWriteStream
+import ru.spb.hse.karvozavr.cli.util.ExitCode
 
 
 class CatCommandTest {
@@ -23,9 +23,9 @@ class CatCommandTest {
             CliShell.emptyShell()
         )
 
-        assertEquals(cmd.execute(), 0)
-        assertEquals(outStream.isNotEmpty(), true)
-        assertEquals(errStream.isEmpty(), true)
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
+        assertEquals(true, errStream.isEmpty())
     }
 
     @Test
@@ -33,17 +33,17 @@ class CatCommandTest {
         val inStream = ReadWriteStream()
         val errStream = ReadWriteStream()
         val inputData = listOf("Hello", "World")
-        inputData.forEach { inStream.writeLine(it) }
+        inputData.forEach { inStream.write(it) }
         val outStream = ReadWriteStream()
 
         val cmd = CatCommand(emptyList(), inStream, outStream, errStream, CliShell.emptyShell())
 
-        assertEquals(cmd.execute(), 0)
-        assertEquals(outStream.isNotEmpty(), true)
-        assertEquals(errStream.isEmpty(), true)
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
+        assertEquals(true, errStream.isEmpty())
 
         val seq = generateSequence { if (outStream.isNotEmpty()) outStream.readLine() else null }
-        assertEquals(seq.toList(), inputData)
-        assertEquals(outStream.isEmpty(), true)
+        assertEquals(inputData, seq.toList())
+        assertEquals(true, outStream.isEmpty())
     }
 }

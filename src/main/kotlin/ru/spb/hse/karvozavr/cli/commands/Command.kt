@@ -3,6 +3,7 @@ package ru.spb.hse.karvozavr.cli.commands
 import ru.spb.hse.karvozavr.cli.shell.Shell
 import ru.spb.hse.karvozavr.cli.streams.InStream
 import ru.spb.hse.karvozavr.cli.streams.OutStream
+import ru.spb.hse.karvozavr.cli.util.ExitCode
 
 /**
  * Command base interface.
@@ -26,7 +27,7 @@ abstract class Command(
      * @param err error line to output
      */
     protected fun writeError(err: String) {
-        errStream.writeLine(err)
+        errStream.write(err)
     }
 
     /**
@@ -35,7 +36,7 @@ abstract class Command(
      * @param line line to output
      */
     protected fun writeLine(line: String) {
-        outStream.writeLine(line)
+        outStream.write(line)
     }
 
     /**
@@ -50,5 +51,5 @@ abstract class Command(
      *
      * @return exit code of the command
      */
-    abstract fun execute(): Int
+    abstract fun execute(): ExitCode
 }

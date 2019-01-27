@@ -1,11 +1,11 @@
-package ru.spb.hse.karvozavr.cli.builtins
+package ru.spb.hse.karvozavr.cli.commands.builtins
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import ru.spb.hse.karvozavr.cli.commands.builtins.EchoCommand
 import ru.spb.hse.karvozavr.cli.shell.CliShell
 import ru.spb.hse.karvozavr.cli.streams.EmptyStream
 import ru.spb.hse.karvozavr.cli.streams.ReadWriteStream
+import ru.spb.hse.karvozavr.cli.util.ExitCode
 
 class EchoCommandTest {
 
@@ -22,11 +22,11 @@ class EchoCommandTest {
             CliShell.emptyShell()
         )
 
-        assertEquals(cmd.execute(), 0)
-        assertEquals(outStream.isNotEmpty(), true)
-        assertEquals(outStream.readLine(), "")
-        assertEquals(outStream.isEmpty(), true)
-        assertEquals(errStream.isEmpty(), true)
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
+        assertEquals("", outStream.readLine())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
     }
 
     @Test
@@ -42,11 +42,11 @@ class EchoCommandTest {
             CliShell.emptyShell()
         )
 
-        assertEquals(cmd.execute(), 0)
-        assertEquals(outStream.isNotEmpty(), true)
-        assertEquals(outStream.readLine(), "arg")
-        assertEquals(outStream.isEmpty(), true)
-        assertEquals(errStream.isEmpty(), true)
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
+        assertEquals("arg", outStream.readLine())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
     }
 
     @Test
@@ -63,10 +63,10 @@ class EchoCommandTest {
             CliShell.emptyShell()
         )
 
-        assertEquals(cmd.execute(), 0)
-        assertEquals(outStream.isNotEmpty(), true)
-        assertEquals(outStream.readLine(), data.joinToString(separator = " "))
-        assertEquals(outStream.isEmpty(), true)
-        assertEquals(errStream.isEmpty(), true)
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
+        assertEquals(data.joinToString(separator = " "), outStream.readLine())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
     }
 }

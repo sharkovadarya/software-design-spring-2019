@@ -4,8 +4,10 @@ import ru.spb.hse.karvozavr.cli.commands.Command
 import ru.spb.hse.karvozavr.cli.shell.Shell
 import ru.spb.hse.karvozavr.cli.streams.InStream
 import ru.spb.hse.karvozavr.cli.streams.OutStream
+import ru.spb.hse.karvozavr.cli.util.ExitCode
 import java.io.FileNotFoundException
-import java.io.FileReader
+import java.nio.file.Files
+import java.nio.file.Paths
 
 class WordcountCommand(
     args: List<String>,
@@ -13,26 +15,25 @@ class WordcountCommand(
     outStream: OutStream,
     errStream: OutStream,
     shell: Shell
-) :
-    Command(args, inputStream, outStream, errStream, shell) {
+) : Command(args, inputStream, outStream, errStream, shell) {
 
-    override fun execute(): Int = when (args.size) {
+    override fun execute(): ExitCode = when (args.size) {
         0 -> wcStdin()
         1 -> wcFile(args.first())
         else -> {
             writeError("Invalid arguments: cat command require 1 or 0 arguments.")
-            1
+            ExitCode.INVALID_ARGUMENTS
         }
     }
 
-    private fun outputResult(lines: Int, words: Int, bytes: Int) {
+    private fun outputResult(lines: Long, words: Long, bytes: Long) {
         writeLine("$lines $words $bytes")
     }
 
-    private fun wcStdin(): Int {
-        var lines = 0
-        var words = 0
-        var bytes = 0
+    private fun wcStdin(): ExitCode {
+        var lines = 0L
+        var words = 0L
+        var bytes = 0L
         while (inputStream.isNotEmpty()) {
             val line = inputStream.readLine()
             lines++
@@ -40,27 +41,28 @@ class WordcountCommand(
             bytes += line.length + 1
         }
         outputResult(lines, words, bytes)
-        return 0
+        return ExitCode.SUCCESS
     }
 
-    private fun wcFile(file: String): Int {
+    private fun wcFile(file: String): ExitCode {
         try {
-            var lines = 0
-            var words = 0
-            var bytes = 0
-            val fileReader = FileReader(file)
-            fileReader.use {
-                it.forEachLine {
-                    lines++
+            val path = Paths.get(file)
+
+            var lines = 0L
+            var words = 0L
+            val bytes = Files.size(path)
+
+            Files.lines(path).forEach {
+                lines++
+                if (it.isNotEmpty())
                     words += it.split("\\s+".toRegex()).size
-                    bytes += it.length + 1
-                }
             }
+
             outputResult(lines, words, bytes)
         } catch (e: FileNotFoundException) {
             writeError("File $file doesn't exist in a filesystem.")
-            return 2
+            return ExitCode.RESOURCE_NOT_FOUND
         }
-        return 0
+        return ExitCode.SUCCESS
     }
 }

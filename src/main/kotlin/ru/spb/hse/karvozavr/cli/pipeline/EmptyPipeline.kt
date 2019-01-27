@@ -1,7 +1,8 @@
 package ru.spb.hse.karvozavr.cli.pipeline
 
+import ru.spb.hse.karvozavr.cli.util.ExitCode
+
 object EmptyPipeline : Pipeline {
-    override fun execute(): Int {
-        return 0
-    }
+    override fun execute(): ExitCode =
+        ExitCode.SUCCESS
 }

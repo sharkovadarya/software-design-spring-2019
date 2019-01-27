@@ -15,7 +15,7 @@ class ReadWriteStream : InStream, OutStream {
             throw NoSuchElementException("ReadLine on an empty stream is not allowed.")
         }
 
-    override fun writeLine(line: String) {
+    override fun write(line: String) {
         buffer.addLast(line)
     }
 }

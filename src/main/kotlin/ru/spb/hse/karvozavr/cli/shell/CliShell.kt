@@ -5,6 +5,9 @@ import ru.spb.hse.karvozavr.cli.shell.env.Directory
 import ru.spb.hse.karvozavr.cli.shell.env.Environment
 import java.nio.file.Paths
 
+/**
+ * Basic shell implementation.
+ */
 class CliShell(val environment: Environment) : Shell {
 
     companion object {
