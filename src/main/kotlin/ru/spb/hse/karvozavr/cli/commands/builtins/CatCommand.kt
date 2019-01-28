@@ -27,7 +27,7 @@ class CatCommand(
 
     private fun catStdin(): ExitCode {
         while (inputStream.isNotEmpty())
-            writeLine(inputStream.readLine())
+            writeLine(inputStream.scanLine())
         return ExitCode.SUCCESS
     }
 

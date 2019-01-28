@@ -35,7 +35,7 @@ class WordcountCommand(
         var words = 0L
         var bytes = 0L
         while (inputStream.isNotEmpty()) {
-            val line = inputStream.readLine()
+            val line = inputStream.scanLine()
             lines++
             words += line.split("\\s+".toRegex()).size
             bytes += line.length + 1

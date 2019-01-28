@@ -1,7 +1,7 @@
 package ru.spb.hse.karvozavr.cli.streams
 
 interface InStream {
-    fun readLine(): String
+    fun scanLine(): String
     fun isEmpty(): Boolean
     fun isNotEmpty() = !isEmpty()
 }
@@ -9,5 +9,5 @@ interface InStream {
 object EmptyStream : InStream {
     override fun isEmpty(): Boolean = true
 
-    override fun readLine(): String = ""
+    override fun scanLine(): String = ""
 }

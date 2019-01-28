@@ -24,7 +24,7 @@ class EchoCommandTest {
 
         assertEquals(ExitCode.SUCCESS, cmd.execute())
         assertEquals(true, outStream.isNotEmpty())
-        assertEquals("", outStream.readLine())
+        assertEquals("", outStream.scanLine())
         assertEquals(true, outStream.isEmpty())
         assertEquals(true, errStream.isEmpty())
     }
@@ -44,7 +44,7 @@ class EchoCommandTest {
 
         assertEquals(ExitCode.SUCCESS, cmd.execute())
         assertEquals(true, outStream.isNotEmpty())
-        assertEquals("arg", outStream.readLine())
+        assertEquals("arg", outStream.scanLine())
         assertEquals(true, outStream.isEmpty())
         assertEquals(true, errStream.isEmpty())
     }
@@ -65,7 +65,7 @@ class EchoCommandTest {
 
         assertEquals(ExitCode.SUCCESS, cmd.execute())
         assertEquals(true, outStream.isNotEmpty())
-        assertEquals(data.joinToString(separator = " "), outStream.readLine())
+        assertEquals(data.joinToString(separator = " "), outStream.scanLine())
         assertEquals(true, outStream.isEmpty())
         assertEquals(true, errStream.isEmpty())
     }

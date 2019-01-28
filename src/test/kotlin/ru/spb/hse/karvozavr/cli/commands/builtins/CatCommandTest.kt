@@ -6,9 +6,14 @@ import ru.spb.hse.karvozavr.cli.shell.CliShell
 import ru.spb.hse.karvozavr.cli.streams.EmptyStream
 import ru.spb.hse.karvozavr.cli.streams.ReadWriteStream
 import ru.spb.hse.karvozavr.cli.util.ExitCode
+import java.nio.file.Files
+import java.nio.file.Paths
 
 
 class CatCommandTest {
+
+    private val testDirecory = Paths.get("src", "test", "resources").toAbsolutePath()
+    private val file = (testDirecory.resolve("file1.txt")).toString()
 
     @Test
     fun testCatFile() {
@@ -16,7 +21,7 @@ class CatCommandTest {
         val outStream = ReadWriteStream()
 
         val cmd = CatCommand(
-            listOf("/etc/hosts"),
+            listOf(file),
             EmptyStream,
             outStream,
             errStream,
@@ -26,6 +31,11 @@ class CatCommandTest {
         assertEquals(ExitCode.SUCCESS, cmd.execute())
         assertEquals(true, outStream.isNotEmpty())
         assertEquals(true, errStream.isEmpty())
+
+        Files.lines(Paths.get(file))
+            .forEach { assertEquals(it, outStream.scanLine()) }
+
+        assertEquals(true, outStream.isEmpty())
     }
 
     @Test
@@ -42,7 +52,7 @@ class CatCommandTest {
         assertEquals(true, outStream.isNotEmpty())
         assertEquals(true, errStream.isEmpty())
 
-        val seq = generateSequence { if (outStream.isNotEmpty()) outStream.readLine() else null }
+        val seq = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }
         assertEquals(inputData, seq.toList())
         assertEquals(true, outStream.isEmpty())
     }

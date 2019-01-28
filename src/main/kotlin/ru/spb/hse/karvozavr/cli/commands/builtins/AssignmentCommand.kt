@@ -6,12 +6,7 @@ import ru.spb.hse.karvozavr.cli.streams.InStream
 import ru.spb.hse.karvozavr.cli.streams.OutStream
 import ru.spb.hse.karvozavr.cli.util.ExitCode
 
-/**
- * Echo command.
- *
- * Similar to bash echo command.
- */
-class EchoCommand(
+class AssignmentCommand(
     args: List<String>,
     inputStream: InStream,
     outStream: OutStream,
@@ -20,7 +15,10 @@ class EchoCommand(
 ) : Command(args, inputStream, outStream, errStream, shell) {
 
     override fun execute(): ExitCode {
-        writeLine(args.joinToString(separator = " "))
+        if (args.size != 2) {
+            return ExitCode.INVALID_ARGUMENTS
+        }
+        shell().environment().variables()[args[0]] = args[1]
         return ExitCode.SUCCESS
     }
 }

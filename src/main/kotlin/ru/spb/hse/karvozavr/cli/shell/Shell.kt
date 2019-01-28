@@ -1,11 +1,17 @@
 package ru.spb.hse.karvozavr.cli.shell
 
 import ru.spb.hse.karvozavr.cli.shell.env.Environment
+import ru.spb.hse.karvozavr.cli.util.ExitCode
 
 /**
  * Shell interface.
  */
 interface Shell {
+
+    /**
+     * Exit code of the last command.
+     */
+    var lastExitCode: ExitCode
 
     /**
      * Returns environment of this shell.

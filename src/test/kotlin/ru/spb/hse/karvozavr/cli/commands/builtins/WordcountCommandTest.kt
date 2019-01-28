@@ -11,8 +11,8 @@ import java.nio.file.Paths
 class WordcountCommandTest {
 
     private val testDirecory = Paths.get("src", "test", "resources").toAbsolutePath()
-    val file1 = (testDirecory.resolve("file1.txt")).toString()
-    val emptyFile = (testDirecory.resolve("empty.txt")).toString()
+    private val file1 = (testDirecory.resolve("file1.txt")).toString()
+    private val emptyFile = (testDirecory.resolve("empty.txt")).toString()
 
     @Test
     fun testEmpty() {
@@ -23,7 +23,7 @@ class WordcountCommandTest {
 
         assertEquals(ExitCode.SUCCESS, cmd.execute())
         assertEquals(true, outStream.isNotEmpty())
-        assertEquals("0 0 0", outStream.readLine())
+        assertEquals("0 0 0", outStream.scanLine())
         assertEquals(true, outStream.isEmpty())
         assertEquals(true, errStream.isEmpty())
     }
@@ -37,7 +37,7 @@ class WordcountCommandTest {
 
         assertEquals(ExitCode.SUCCESS, cmd.execute())
         assertEquals(true, outStream.isNotEmpty())
-        assertEquals("7 9 48", outStream.readLine())
+        assertEquals("7 9 48", outStream.scanLine())
         assertEquals(true, outStream.isEmpty())
         assertEquals(true, errStream.isEmpty())
     }

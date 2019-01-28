@@ -5,6 +5,9 @@ import ru.spb.hse.karvozavr.cli.shell.Shell
 import ru.spb.hse.karvozavr.cli.streams.InStream
 import ru.spb.hse.karvozavr.cli.streams.OutStream
 
+/**
+ * Factory responsible for creation of command entity by it's name and parameters.
+ */
 object CommandFactory {
     fun createCommand(
         commandName: String,
@@ -19,6 +22,7 @@ object CommandFactory {
         "wc" -> WordcountCommand(args, inStream, outStream, errStream, shell)
         "pwd" -> PwdCommand(args, inStream, outStream, errStream, shell)
         "exit" -> ExitCommand(args, inStream, outStream, errStream, shell)
-        else -> TODO()
+        "=" -> AssignmentCommand(args, inStream, outStream, errStream, shell)
+        else -> ExternalCommand(args, inStream, outStream, errStream, shell, commandName)
     }
 }

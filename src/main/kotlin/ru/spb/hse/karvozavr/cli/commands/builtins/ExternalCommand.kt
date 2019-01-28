@@ -38,6 +38,7 @@ class ExternalCommand(
                 ExitCode.UNKNOWN_CODE
             }
         } catch (e: Exception) {
+            writeError("Unknown command: $command")
             ExitCode.UNKNOWN_COMMAND
         }
     }
@@ -45,7 +46,7 @@ class ExternalCommand(
     private fun inputStreamToFile(): File {
         Files.newBufferedWriter(inFile).use {
             while (inputStream.isNotEmpty()) {
-                it.write(inputStream.readLine())
+                it.write(inputStream.scanLine())
             }
         }
         return inFile.toFile()

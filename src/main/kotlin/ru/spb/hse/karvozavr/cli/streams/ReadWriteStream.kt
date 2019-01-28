@@ -8,7 +8,7 @@ class ReadWriteStream : InStream, OutStream {
     override fun isEmpty(): Boolean =
         buffer.isEmpty()
 
-    override fun readLine(): String =
+    override fun scanLine(): String =
         if (buffer.isNotEmpty()) {
             buffer.removeFirst()
         } else {
