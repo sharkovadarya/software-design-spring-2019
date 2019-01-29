@@ -1,7 +1,6 @@
 package ru.spb.hse.karvozavr.cli.shell
 
 import ru.spb.hse.karvozavr.cli.shell.env.CliEnvironment
-import ru.spb.hse.karvozavr.cli.shell.env.Directory
 import ru.spb.hse.karvozavr.cli.shell.env.Environment
 import ru.spb.hse.karvozavr.cli.util.ExitCode
 import java.nio.file.Paths
@@ -15,7 +14,9 @@ class CliShell(val environment: Environment) : Shell {
         /**
          * Create basic shell with current dir in the directory context of current process.
          */
-        fun emptyShell(): CliShell = CliShell(CliEnvironment(Directory(Paths.get(System.getProperty("user.dir")))))
+        fun emptyShell(): CliShell = CliShell(
+            CliEnvironment(currentDir = Paths.get(System.getProperty("user.dir")))
+        )
     }
 
     override var lastExitCode: ExitCode = ExitCode.SUCCESS

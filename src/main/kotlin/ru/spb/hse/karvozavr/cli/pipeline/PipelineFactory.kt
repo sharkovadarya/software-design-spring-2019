@@ -1,8 +1,8 @@
 package ru.spb.hse.karvozavr.cli.pipeline
 
 import ru.spb.hse.karvozavr.cli.commands.Command
-import ru.spb.hse.karvozavr.cli.commands.CommandNode
-import ru.spb.hse.karvozavr.cli.commands.builtins.CommandFactory
+import ru.spb.hse.karvozavr.cli.parser.CommandNode
+import ru.spb.hse.karvozavr.cli.commands.CommandFactory
 import ru.spb.hse.karvozavr.cli.shell.CliShell
 import ru.spb.hse.karvozavr.cli.shell.Shell
 import ru.spb.hse.karvozavr.cli.streams.InStream
@@ -26,7 +26,8 @@ object PipelineFactory {
                 inStream,
                 outStream,
                 errStream,
-                shell
+                shell,
+                false
             )
         )
         else -> createMultiCommandPipeline(
@@ -51,7 +52,8 @@ object PipelineFactory {
             inStream,
             bufferStream,
             errStream,
-            CliShell.emptyShell()
+            CliShell.emptyShell(),
+            false
         )
         pipeline.add(cmd)
 
@@ -63,7 +65,8 @@ object PipelineFactory {
                 bufferStream,
                 outBufferStream,
                 errStream,
-                CliShell.emptyShell()
+                CliShell.emptyShell(),
+                true
             )
             pipeline.add(cmd)
             bufferStream = outBufferStream
@@ -75,7 +78,8 @@ object PipelineFactory {
             bufferStream,
             outStream,
             errStream,
-            CliShell.emptyShell()
+            CliShell.emptyShell(),
+            true
         )
         pipeline.add(cmd)
 

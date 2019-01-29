@@ -14,7 +14,8 @@ class ExternalCommand(
     outStream: OutStream,
     errStream: OutStream,
     shell: Shell,
-    val command: String
+    val command: String,
+    val redirect: Boolean = false
 ) : Command(args, inputStream, outStream, errStream, shell) {
 
     private val inFile = Files.createTempFile("pipetempin", ".tmp")
@@ -23,10 +24,14 @@ class ExternalCommand(
     override fun execute(): ExitCode {
         return try {
             val commandList = listOf(command) + args
-            val exitCode = ProcessBuilder()
+            var pb = ProcessBuilder()
                 .command(commandList)
-                .redirectInput(inputStreamToFile())
-                .redirectOutput(outFile.toFile())
+            pb = if (redirect)
+                pb.redirectInput(inputStreamToFile())
+            else
+                pb.redirectInput(ProcessBuilder.Redirect.INHERIT)
+
+            val exitCode = pb.redirectOutput(outFile.toFile())
                 .start()
                 .waitFor()
 

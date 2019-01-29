@@ -3,7 +3,7 @@ package ru.spb.hse.karvozavr.cli.pipeline
 import org.junit.Test
 
 import org.junit.Assert.*
-import ru.spb.hse.karvozavr.cli.commands.CommandNode
+import ru.spb.hse.karvozavr.cli.parser.CommandNode
 import ru.spb.hse.karvozavr.cli.shell.CliShell
 import ru.spb.hse.karvozavr.cli.streams.EmptyStream
 import ru.spb.hse.karvozavr.cli.streams.ReadWriteStream
@@ -21,7 +21,10 @@ class MultiCommandPipelineTest {
         val errStream = ReadWriteStream()
         val outStream = ReadWriteStream()
         val pipeline: Pipeline = PipelineFactory.createPipeline(
-            listOf(CommandNode("cat", listOf(file)), CommandNode("cat", emptyList())),
+            listOf(
+                CommandNode("cat", listOf(file)),
+                CommandNode("cat", emptyList())
+            ),
             EmptyStream,
             outStream,
             errStream,

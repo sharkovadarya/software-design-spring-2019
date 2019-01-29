@@ -1,6 +1,6 @@
-package ru.spb.hse.karvozavr.cli.commands.builtins
+package ru.spb.hse.karvozavr.cli.commands
 
-import ru.spb.hse.karvozavr.cli.commands.Command
+import ru.spb.hse.karvozavr.cli.commands.builtins.*
 import ru.spb.hse.karvozavr.cli.shell.Shell
 import ru.spb.hse.karvozavr.cli.streams.InStream
 import ru.spb.hse.karvozavr.cli.streams.OutStream
@@ -15,7 +15,8 @@ object CommandFactory {
         inStream: InStream,
         outStream: OutStream,
         errStream: OutStream,
-        shell: Shell
+        shell: Shell,
+        inPipeline: Boolean
     ): Command = when (commandName) {
         "cat" -> CatCommand(args, inStream, outStream, errStream, shell)
         "echo" -> EchoCommand(args, inStream, outStream, errStream, shell)
@@ -23,6 +24,14 @@ object CommandFactory {
         "pwd" -> PwdCommand(args, inStream, outStream, errStream, shell)
         "exit" -> ExitCommand(args, inStream, outStream, errStream, shell)
         "=" -> AssignmentCommand(args, inStream, outStream, errStream, shell)
-        else -> ExternalCommand(args, inStream, outStream, errStream, shell, commandName)
+        else -> ExternalCommand(
+            args,
+            inStream,
+            outStream,
+            errStream,
+            shell,
+            commandName,
+            inPipeline
+        )
     }
 }

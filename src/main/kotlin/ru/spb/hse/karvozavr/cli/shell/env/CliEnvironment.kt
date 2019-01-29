@@ -1,20 +1,21 @@
 package ru.spb.hse.karvozavr.cli.shell.env
 
-import ru.spb.hse.karvozavr.cli.util.ExitCode
+import java.nio.file.Path
+import java.nio.file.Paths
 
 class CliEnvironment(
-    private var currentDir: Directory,
-    private val variables: MutableMap<String, String> = mutableMapOf()
+    private val variables: MutableMap<String, String> = mutableMapOf(),
+    private var currentDir: Path = Paths.get("/")
 ) : Environment {
 
     override fun variables(): MutableMap<String, String> =
         variables
 
-    override fun currentDir(): Directory =
+    override fun currentDir(): Path =
         currentDir
 
-    override fun changeDirectory(newDir: Directory) {
-        currentDir = newDir
+    override fun changeDirectory(newDir: Path) {
+        currentDir = Paths.get(newDir.toString())
     }
 
     override fun shellPrompt(): String {

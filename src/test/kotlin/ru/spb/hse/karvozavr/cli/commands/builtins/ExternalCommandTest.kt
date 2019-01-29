@@ -21,7 +21,8 @@ class ExternalCommandTest {
             outStream,
             errStream,
             CliShell.emptyShell(),
-            "ls"
+            "ls",
+            true
         )
 
         assertEquals(ExitCode.SUCCESS, cmd.execute())
@@ -44,7 +45,8 @@ class ExternalCommandTest {
             outStream,
             errStream,
             CliShell.emptyShell(),
-            "cat"
+            "cat",
+            true
         )
 
         assertEquals(ExitCode.SUCCESS, cmd.execute())
