@@ -9,8 +9,22 @@ import ru.spb.hse.karvozavr.cli.streams.InStream
 import ru.spb.hse.karvozavr.cli.streams.OutStream
 import ru.spb.hse.karvozavr.cli.streams.ReadWriteStream
 
+/**
+ * Tools to create pipeline from parsed commands
+ * with given IO and environment configuration.
+ */
 object PipelineFactory {
 
+    /**
+     * Creates executable pipeline.
+     *
+     * @param commands parsed commands
+     * @param inStream input stream
+     * @param outStream output stream
+     * @param errStream error stream
+     *
+     * @return executable pipeline
+     */
     fun createPipeline(
         commands: List<CommandNode>,
         inStream: InStream,

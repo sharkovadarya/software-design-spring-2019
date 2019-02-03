@@ -8,6 +8,9 @@ import ru.spb.hse.karvozavr.cli.util.ExitCode
 import java.io.FileNotFoundException
 import java.io.FileReader
 
+/**
+ * Cat command.
+ */
 class CatCommand(
     args: List<String>,
     inputStream: InStream,

@@ -6,6 +6,9 @@ import ru.spb.hse.karvozavr.cli.streams.InStream
 import ru.spb.hse.karvozavr.cli.streams.OutStream
 import ru.spb.hse.karvozavr.cli.util.ExitCode
 
+/**
+ * Print working directory command.
+ */
 class PwdCommand(
     args: List<String>,
     inputStream: InStream,

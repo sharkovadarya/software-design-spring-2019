@@ -9,6 +9,9 @@ import java.io.FileNotFoundException
 import java.nio.file.Files
 import java.nio.file.Paths
 
+/**
+ * Wordcount command.
+ */
 class WordcountCommand(
     args: List<String>,
     inputStream: InStream,

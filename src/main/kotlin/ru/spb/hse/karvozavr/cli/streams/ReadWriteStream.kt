@@ -2,6 +2,9 @@ package ru.spb.hse.karvozavr.cli.streams
 
 import java.util.*
 
+/**
+ * Writable and readable stream buffer.
+ */
 class ReadWriteStream : InStream, OutStream {
     private val buffer: Deque<String> = ArrayDeque<String>()
 

@@ -9,6 +9,20 @@ import ru.spb.hse.karvozavr.cli.streams.OutStream
  * Factory responsible for creation of command entity by it's name and parameters.
  */
 object CommandFactory {
+
+    /**
+     * Creates executable command.
+     *
+     * @param commandName name of a command
+     * @param args arguments of a command
+     * @param inStream input stream
+     * @param outStream output stream
+     * @param errStream error stream
+     * @param shell shell environment
+     * @param inPipeline if the command in pipeline or not
+     *
+     * @return executable pipeline
+     */
     fun createCommand(
         commandName: String,
         args: List<String>,

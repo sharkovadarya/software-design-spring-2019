@@ -8,6 +8,9 @@ import ru.spb.hse.karvozavr.cli.util.ExitCode
 import java.io.FileNotFoundException
 import java.nio.file.Paths
 
+/**
+ * Change directory command (cd).
+ */
 class ChangeDirectoryCommand(
     args: List<String>,
     inputStream: InStream,

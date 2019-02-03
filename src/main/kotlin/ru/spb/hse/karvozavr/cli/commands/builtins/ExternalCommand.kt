@@ -8,6 +8,10 @@ import ru.spb.hse.karvozavr.cli.util.ExitCode
 import java.io.File
 import java.nio.file.Files
 
+/**
+ * External command.
+ * Invokes external process on execution.
+ */
 class ExternalCommand(
     args: List<String>,
     inputStream: InStream,

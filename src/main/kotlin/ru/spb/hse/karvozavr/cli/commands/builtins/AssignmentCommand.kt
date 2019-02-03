@@ -6,6 +6,12 @@ import ru.spb.hse.karvozavr.cli.streams.InStream
 import ru.spb.hse.karvozavr.cli.streams.OutStream
 import ru.spb.hse.karvozavr.cli.util.ExitCode
 
+/**
+ * Assignment command.
+ *
+ * Example:
+ *  foo=bar
+ */
 class AssignmentCommand(
     args: List<String>,
     inputStream: InStream,
