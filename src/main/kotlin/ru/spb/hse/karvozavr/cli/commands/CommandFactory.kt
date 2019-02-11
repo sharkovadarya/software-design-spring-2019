@@ -37,6 +37,7 @@ object CommandFactory {
         "wc" -> WordcountCommand(args, inStream, outStream, errStream, shell)
         "pwd" -> PwdCommand(args, inStream, outStream, errStream, shell)
         "exit" -> ExitCommand(args, inStream, outStream, errStream, shell)
+        "grep" -> GrepCommand(args, inStream, outStream, errStream, shell)
         "=" -> AssignmentCommand(args, inStream, outStream, errStream, shell)
         else -> ExternalCommand(
             args,
