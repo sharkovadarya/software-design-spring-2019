@@ -24,7 +24,7 @@ class GrepCommandTest {
         assertEquals(true, errStream.isEmpty())
 
         val seq = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }
-        assertEquals(listOf("big brown Fox"), seq.toList())
+        assertEquals(listOf("the lazy fox"), seq.toList())
         assertEquals(true, outStream.isEmpty())
     }
 
@@ -75,7 +75,26 @@ class GrepCommandTest {
         assertEquals(true, errStream.isEmpty())
 
         val seq = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }
-        assertEquals(listOf("big brown Fox"), seq.toList())
+        assertEquals(listOf("big brown fox"), seq.toList())
+        assertEquals(true, outStream.isEmpty())
+    }
+
+    @Test
+    fun testNLines() {
+        val inStream = ReadWriteStream()
+        val errStream = ReadWriteStream()
+        val inputData = listOf("big brown Fox", "jumps over the fence", "the lazy fox-terrier", "really lazy", "one")
+        inputData.forEach { inStream.write(it) }
+        val outStream = ReadWriteStream()
+
+        val cmd = GrepCommand(listOf("fence", "-A", "2"), inStream, outStream, errStream, CliShell.emptyShell())
+
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
+        assertEquals(true, errStream.isEmpty())
+
+        val seq = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }
+        assertEquals(listOf("jumps over the fence", "the lazy fox-terrier", "really lazy"), seq.toList())
         assertEquals(true, outStream.isEmpty())
     }
 }

@@ -31,11 +31,6 @@ class GrepCommand(
             help = "look for the whole word match"
         )
 
-        val reg by parser.flagging(
-            "-e",
-            help = "interpret pattern as regex"
-        )
-
         val count by parser.storing(
             "-A",
             help = "print n lines after match"
@@ -52,8 +47,7 @@ class GrepCommand(
             ArgParser(args = args.toTypedArray()).parseInto(::GrepArgs).run {
                 val pattern = if (word) "(\\s+|^)$pattern(\\s+|$)" else pattern
                 val options = mutableSetOf<RegexOption>()
-                if (!reg)
-                    options.add(RegexOption.LITERAL)
+
                 if (caseInsensitive)
                     options.add(RegexOption.IGNORE_CASE)
 
