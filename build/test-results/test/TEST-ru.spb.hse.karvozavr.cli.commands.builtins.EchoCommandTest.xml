@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.spb.hse.karvozavr.cli.commands.builtins.EchoCommandTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-02-20T05:13:21" hostname="darya-asus-UX303UA" time="0.005">
+<testsuite name="ru.spb.hse.karvozavr.cli.commands.builtins.EchoCommandTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-02-20T05:17:21" hostname="darya-asus-UX303UA" time="0.001">
   <properties/>
   <testcase name="testEmpty" classname="ru.spb.hse.karvozavr.cli.commands.builtins.EchoCommandTest" time="0.001"/>
-  <testcase name="testOne" classname="ru.spb.hse.karvozavr.cli.commands.builtins.EchoCommandTest" time="0.001"/>
-  <testcase name="testMany" classname="ru.spb.hse.karvozavr.cli.commands.builtins.EchoCommandTest" time="0.001"/>
+  <testcase name="testMany" classname="ru.spb.hse.karvozavr.cli.commands.builtins.EchoCommandTest" time="0.0"/>
+  <testcase name="testOne" classname="ru.spb.hse.karvozavr.cli.commands.builtins.EchoCommandTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

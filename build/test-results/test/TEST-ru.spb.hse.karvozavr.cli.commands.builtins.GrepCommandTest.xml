@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2019-02-20T05:13:21" hostname="darya-asus-UX303UA" time="0.111">
+<testsuite name="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2019-02-20T05:17:21" hostname="darya-asus-UX303UA" time="0.031">
   <properties/>
-  <testcase name="testIgnoreCase" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.095"/>
+  <testcase name="testEmptyArgs" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.025"/>
+  <testcase name="testIgnoreCase" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.003"/>
   <testcase name="testWord" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.001"/>
-  <testcase name="testNLines" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.01"/>
-  <testcase name="testSimple" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.001"/>
-  <testcase name="testEmptyArgs" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.002"/>
+  <testcase name="testNLines" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.001"/>
+  <testcase name="testSimple" classname="ru.spb.hse.karvozavr.cli.commands.builtins.GrepCommandTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
