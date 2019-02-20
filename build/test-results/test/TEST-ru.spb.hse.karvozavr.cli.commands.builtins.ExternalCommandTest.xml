@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.spb.hse.karvozavr.cli.commands.builtins.ExternalCommandTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-02-20T05:13:21" hostname="darya-asus-UX303UA" time="0.072">
+  <properties/>
+  <testcase name="testStdin" classname="ru.spb.hse.karvozavr.cli.commands.builtins.ExternalCommandTest" time="0.059"/>
+  <testcase name="testArgs" classname="ru.spb.hse.karvozavr.cli.commands.builtins.ExternalCommandTest" time="0.012"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

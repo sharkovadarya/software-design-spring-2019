@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.spb.hse.karvozavr.cli.parser.CommandParserTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2019-02-20T05:13:21" hostname="darya-asus-UX303UA" time="0.051">
+  <properties/>
+  <testcase name="parseCat2" classname="ru.spb.hse.karvozavr.cli.parser.CommandParserTest" time="0.011"/>
+  <testcase name="parseAssignment" classname="ru.spb.hse.karvozavr.cli.parser.CommandParserTest" time="0.026"/>
+  <testcase name="parseAssignmentInterp" classname="ru.spb.hse.karvozavr.cli.parser.CommandParserTest" time="0.001"/>
+  <testcase name="parseEchoInterp" classname="ru.spb.hse.karvozavr.cli.parser.CommandParserTest" time="0.002"/>
+  <testcase name="parsePipeline" classname="ru.spb.hse.karvozavr.cli.parser.CommandParserTest" time="0.003"/>
+  <testcase name="parseCat1" classname="ru.spb.hse.karvozavr.cli.parser.CommandParserTest" time="0.002"/>
+  <testcase name="parseEcho" classname="ru.spb.hse.karvozavr.cli.parser.CommandParserTest" time="0.003"/>
+  <system-out><![CDATA[CommandNode(name=cat, args=[])
+CommandNode(name==, args=[foo, bar])
+CommandNode(name==, args=[foo, bbaz bc r])
+CommandNode(name=echo, args=[bbaz, bc, r])
+[CommandNode(name=echo, args=[bbaz, bc, r]), CommandNode(name=cat, args=[]), CommandNode(name=echo, args=[baz, $ccc]), CommandNode(name=cat, args=[])]
+CommandNode(name=cat, args=[file.txt])
+CommandNode(name=echo, args=[foo, bar, baz])
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -22,7 +22,7 @@ interface Environment {
     fun currentDir(): Path
 
     /**
-     * Changes current working directiry to `newDir`.
+     * Changes current working directory to `newDir`.
      *
      * @param newDir new working directory
      */

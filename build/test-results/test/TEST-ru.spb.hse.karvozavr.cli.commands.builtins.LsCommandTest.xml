@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.spb.hse.karvozavr.cli.commands.builtins.LsCommandTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-02-20T05:13:21" hostname="darya-asus-UX303UA" time="0.017">
+  <properties/>
+  <testcase name="testSrc" classname="ru.spb.hse.karvozavr.cli.commands.builtins.LsCommandTest" time="0.002"/>
+  <testcase name="testNoArguments" classname="ru.spb.hse.karvozavr.cli.commands.builtins.LsCommandTest" time="0.001"/>
+  <testcase name="testPreviousDirectory" classname="ru.spb.hse.karvozavr.cli.commands.builtins.LsCommandTest" time="0.01"/>
+  <testcase name="testCurrentDirectory" classname="ru.spb.hse.karvozavr.cli.commands.builtins.LsCommandTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

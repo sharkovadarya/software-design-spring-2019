@@ -1,0 +1,8 @@
+CommandNode(name=cat, args=[])
+%CommandNode(name==, args=[foo, bar])
++CommandNode(name==, args=[foo, bbaz bc r])
++CommandNode(name=echo, args=[bbaz, bc, r])
+	—[CommandNode(name=echo, args=[bbaz, bc, r]), CommandNode(name=cat, args=[]), CommandNode(name=echo, args=[baz, $ccc]), CommandNode(name=cat, args=[])]
+
+'CommandNode(name=cat, args=[file.txt])
+-CommandNode(name=echo, args=[foo, bar, baz])
