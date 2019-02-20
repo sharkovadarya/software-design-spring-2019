@@ -20,8 +20,8 @@ class ChangeDirectoryCommand(
 ) : Command(args, inputStream, outStream, errStream, shell) {
 
     override fun execute(): ExitCode {
-        return if (args.isNotEmpty()) {
-            try {
+        if (args.isNotEmpty()) {
+            return try {
                 val newPath = shell().environment().currentDir().resolve(Paths.get(args[0]))
                 shell().environment().changeDirectory(newPath)
                 ExitCode.SUCCESS
@@ -30,7 +30,7 @@ class ChangeDirectoryCommand(
             }
         } else {
             writeError("This command accepts only 1 argument!")
-            ExitCode.INVALID_ARGUMENTS
+            return ExitCode.INVALID_ARGUMENTS
         }
     }
 }
