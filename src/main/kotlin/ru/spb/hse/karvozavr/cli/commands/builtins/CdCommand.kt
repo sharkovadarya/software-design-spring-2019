@@ -17,6 +17,11 @@ class CdCommand (
 ) : Command(args, inputStream, outStream, errStream, shell) {
 
     override fun execute(): ExitCode {
+        if (args.size > 1) {
+            writeError("cd: too many arguments")
+            return ExitCode.INVALID_ARGUMENTS
+        }
+
         val currentDirectory = shell().environment().currentDir()
         val newDirectory = if (args.isEmpty()) "" else args.first()
         val cdDirectory = if (newDirectory.isEmpty()) Paths.get(System.getProperty("user.home")) else {

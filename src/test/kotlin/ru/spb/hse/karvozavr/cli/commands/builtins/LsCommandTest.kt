@@ -1,6 +1,7 @@
 package ru.spb.hse.karvozavr.cli.commands.builtins
 
-import org.junit.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import ru.spb.hse.karvozavr.cli.shell.CliShell
 import ru.spb.hse.karvozavr.cli.streams.EmptyStream
@@ -21,16 +22,16 @@ class LsCommandTest {
             CliShell.emptyShell()
         )
 
-        Assert.assertEquals(ExitCode.SUCCESS, cmd.execute())
-        Assert.assertEquals(true, outStream.isNotEmpty())
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
         val filesList = listOf("main", "test")
         val output = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }.toList()
-        Assert.assertEquals(filesList.size, output.size)
+        assertEquals(filesList.size, output.size)
         for (filename in filesList) {
-            Assert.assertTrue(output.contains(filename))
+            assertTrue(output.contains(filename))
         }
-        Assert.assertEquals(true, outStream.isEmpty())
-        Assert.assertEquals(true, errStream.isEmpty())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
     }
 
     @Test
@@ -49,16 +50,16 @@ class LsCommandTest {
             shell
         )
 
-        Assert.assertEquals(ExitCode.SUCCESS, cmd.execute())
-        Assert.assertEquals(true, outStream.isNotEmpty())
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
         val filesList = listOf("main", "test")
         val output = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }.toList()
-        Assert.assertEquals(filesList.size, output.size)
+        assertEquals(filesList.size, output.size)
         for (filename in filesList) {
-            Assert.assertTrue(output.contains(filename))
+            assertTrue(output.contains(filename))
         }
-        Assert.assertEquals(true, outStream.isEmpty())
-        Assert.assertEquals(true, errStream.isEmpty())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
     }
 
     @Test
@@ -77,16 +78,16 @@ class LsCommandTest {
             shell
         )
 
-        Assert.assertEquals(ExitCode.SUCCESS, cmd.execute())
-        Assert.assertEquals(true, outStream.isNotEmpty())
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
         val filesList = listOf("main", "test")
         val output = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }.toList()
-        Assert.assertEquals(filesList.size, output.size)
+        assertEquals(filesList.size, output.size)
         for (filename in filesList) {
-            Assert.assertTrue(output.contains(filename))
+            assertTrue(output.contains(filename))
         }
-        Assert.assertEquals(true, outStream.isEmpty())
-        Assert.assertEquals(true, errStream.isEmpty())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
     }
 
     @Test
@@ -105,15 +106,54 @@ class LsCommandTest {
             shell
         )
 
-        Assert.assertEquals(ExitCode.SUCCESS, cmd.execute())
-        Assert.assertEquals(true, outStream.isNotEmpty())
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
         val filesList = listOf("main", "test")
         val output = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }.toList()
-        Assert.assertEquals(filesList.size, output.size)
+        assertEquals(filesList.size, output.size)
         for (filename in filesList) {
-            Assert.assertTrue(output.contains(filename))
+            assertTrue(output.contains(filename))
         }
-        Assert.assertEquals(true, outStream.isEmpty())
-        Assert.assertEquals(true, errStream.isEmpty())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
+    }
+    
+    @Test
+    fun testNonexistentDirectory() {
+        val errStream = ReadWriteStream()
+        val outStream = ReadWriteStream()
+        val shell = CliShell.emptyShell()
+
+        val cmd = LsCommand(
+            listOf("nonexistent"),
+            EmptyStream,
+            outStream,
+            errStream,
+            shell
+        )
+
+        assertEquals(ExitCode.INVALID_ARGUMENTS, cmd.execute())
+        assertEquals("ls: cannot access nonexistent: No such file or directory",
+            errStream.scanLine())
+    }
+
+    @Test
+    fun testFile() {
+        val errStream = ReadWriteStream()
+        val outStream = ReadWriteStream()
+        val shell = CliShell.emptyShell()
+
+        val cmd = LsCommand(
+            listOf("build.gradle"),
+            EmptyStream,
+            outStream,
+            errStream,
+            shell
+        )
+
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals("build.gradle", outStream.scanLine())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
     }
 }

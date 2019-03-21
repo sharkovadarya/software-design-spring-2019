@@ -21,6 +21,15 @@ class LsCommand (
         val lsDirectory = if (args.isEmpty()) currentDirectory.toFile() else {
             Paths.get(currentDirectory.toString() + File.separator + args.first()).toFile()
         }
+
+        if (!lsDirectory.exists()) {
+            writeError("ls: cannot access ${lsDirectory.name}: No such file or directory")
+            return ExitCode.INVALID_ARGUMENTS
+        } else if (lsDirectory.isFile) {
+            writeLine(lsDirectory.name)
+            return ExitCode.SUCCESS
+        }
+
         for (file in lsDirectory.listFiles()) {
             writeLine(file.name)
         }
