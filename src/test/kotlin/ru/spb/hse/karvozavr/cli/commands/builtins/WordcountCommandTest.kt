@@ -41,4 +41,6 @@ class WordcountCommandTest {
         assertEquals(true, outStream.isEmpty())
         assertEquals(true, errStream.isEmpty())
     }
+
+
 }

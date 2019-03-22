@@ -25,11 +25,7 @@ class CdCommand (
         val currentDirectory = shell().environment().currentDir()
         val newDirectory = if (args.isEmpty()) "" else args.first()
         val cdDirectory = if (newDirectory.isEmpty()) Paths.get(System.getProperty("user.home")) else {
-            when (newDirectory) {
-                "." -> currentDirectory
-                ".." -> currentDirectory.parent
-                else -> Paths.get(currentDirectory.toString() + File.separator + newDirectory)
-            }
+            currentDirectory.resolve(newDirectory).normalize()
         }
 
         if (cdDirectory != null) {
