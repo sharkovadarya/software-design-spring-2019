@@ -16,24 +16,37 @@ class LsCommand (
     shell: Shell
 ) : Command(args, inputStream, outStream, errStream, shell) {
 
-    override fun execute(): ExitCode {
+    private fun lsDirectory(directoryName: String = ""): ExitCode {
         val currentDirectory = shell().environment().currentDir()
-        val lsDirectory = if (args.isEmpty()) currentDirectory.toFile() else {
-            Paths.get(currentDirectory.toString() + File.separator + args.first()).toFile()
-        }
-
+        val lsDirectory = Paths.get(currentDirectory.toString() + File.separator + directoryName).toFile()
         if (!lsDirectory.exists()) {
             writeError("ls: cannot access ${lsDirectory.name}: No such file or directory")
-            return ExitCode.INVALID_ARGUMENTS
+            return ExitCode.RESOURCE_NOT_FOUND
         } else if (lsDirectory.isFile) {
             writeLine(lsDirectory.name)
-            return ExitCode.SUCCESS
-        }
-
-        for (file in lsDirectory.listFiles()) {
-            writeLine(file.name)
+        } else {
+            for (file in lsDirectory.listFiles()) {
+                writeLine(file.name)
+            }
         }
 
         return ExitCode.SUCCESS
+    }
+
+    override fun execute(): ExitCode {
+        var exitCode = ExitCode.SUCCESS
+
+        if (args.isEmpty()) {
+            return lsDirectory()
+        }
+
+        for (dir in args) {
+            val dirExitCode = lsDirectory(dir)
+            if (dirExitCode != ExitCode.SUCCESS) {
+                exitCode = dirExitCode
+            }
+        }
+
+        return exitCode
     }
 }

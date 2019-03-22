@@ -132,7 +132,7 @@ class LsCommandTest {
             shell
         )
 
-        assertEquals(ExitCode.INVALID_ARGUMENTS, cmd.execute())
+        assertEquals(ExitCode.RESOURCE_NOT_FOUND, cmd.execute())
         assertEquals("ls: cannot access nonexistent: No such file or directory",
             errStream.scanLine())
     }
