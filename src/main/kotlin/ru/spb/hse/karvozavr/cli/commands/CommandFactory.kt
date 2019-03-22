@@ -38,6 +38,8 @@ object CommandFactory {
         "pwd" -> PwdCommand(args, inStream, outStream, errStream, shell)
         "exit" -> ExitCommand(args, inStream, outStream, errStream, shell)
         "grep" -> GrepCommand(args, inStream, outStream, errStream, shell)
+        "ls" -> LsCommand(args, inStream, outStream, errStream, shell)
+        "cd" -> CdCommand(args, inStream, outStream, errStream, shell)
         "=" -> AssignmentCommand(args, inStream, outStream, errStream, shell)
         else -> ExternalCommand(
             args,

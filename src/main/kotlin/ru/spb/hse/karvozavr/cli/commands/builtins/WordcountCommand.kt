@@ -49,7 +49,7 @@ class WordcountCommand(
 
     private fun wcFile(file: String): ExitCode {
         try {
-            val path = Paths.get(file)
+            val path = shell().environment().currentDir().resolve(file)
 
             var lines = 0L
             var words = 0L

@@ -12,7 +12,7 @@ import java.nio.file.Files
  * External command.
  * Invokes external process on execution.
  */
-class ExternalCommand(
+class   ExternalCommand(
     args: List<String>,
     inputStream: InStream,
     outStream: OutStream,
@@ -28,7 +28,7 @@ class ExternalCommand(
     override fun execute(): ExitCode {
         return try {
             val commandList = listOf(command) + args
-            var pb = ProcessBuilder()
+            var pb = ProcessBuilder().directory(shell().environment().currentDir().toFile())
                 .command(commandList)
             pb = if (redirect)
                 pb.redirectInput(inputStreamToFile())

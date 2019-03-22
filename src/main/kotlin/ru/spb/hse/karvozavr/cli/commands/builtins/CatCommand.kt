@@ -36,7 +36,9 @@ class CatCommand(
 
     private fun catFile(file: String): ExitCode {
         try {
-            FileReader(file).use {
+            val path = shell().environment().currentDir().resolve(file)
+
+            FileReader(path.toString()).use {
                 it.readLines().forEach { line -> writeLine(line) }
             }
         } catch (e: FileNotFoundException) {
