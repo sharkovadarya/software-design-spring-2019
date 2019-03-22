@@ -41,6 +41,9 @@ class LsCommand (
         }
 
         for (dir in args) {
+            if (args.size > 1) {
+                writeLine("-$dir")
+            }
             val dirExitCode = lsDirectory(dir)
             if (dirExitCode != ExitCode.SUCCESS) {
                 exitCode = dirExitCode

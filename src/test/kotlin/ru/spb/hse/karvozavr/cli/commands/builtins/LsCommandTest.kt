@@ -156,4 +156,27 @@ class LsCommandTest {
         assertEquals(true, outStream.isEmpty())
         assertEquals(true, errStream.isEmpty())
     }
+
+    @Test
+    fun testMultipleArguments() {
+        val errStream = ReadWriteStream()
+        val outStream = ReadWriteStream()
+        val shell = CliShell.emptyShell()
+
+        val cmd = LsCommand(
+            listOf("src/main", "src/test"),
+            EmptyStream,
+            outStream,
+            errStream,
+            shell
+        )
+        assertEquals(ExitCode.SUCCESS, cmd.execute())
+        assertEquals(true, outStream.isNotEmpty())
+        val filesList = listOf("-src/main", "java", "kotlin", "resources",
+            "-src/test","java", "kotlin", "resources")
+        val output = generateSequence { if (outStream.isNotEmpty()) outStream.scanLine() else null }.toList()
+        assertEquals(filesList.sorted(), output.sorted())
+        assertEquals(true, outStream.isEmpty())
+        assertEquals(true, errStream.isEmpty())
+    }
 }
